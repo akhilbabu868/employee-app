@@ -22,20 +22,9 @@ import com.employee.app.service.employeeservice;
 @RestController
 public class employeecontroller {
 
-	
 	@Autowired
 	private employeeservice service;
-	
-//	@GetMapping("/")
-//	public ModelAndView mv() {
-//		
-//		ModelAndView mv = new ModelAndView("Index");
-//		return mv;
-//	}
-//	
-//	
-	
-	
+
 	@PostMapping("/employee")
 	public List<employees> employeeList() {
 
@@ -43,33 +32,31 @@ public class employeecontroller {
 		return emp;
 	}
 	
-	
-	
-	
+	//Starting Point of Spring-Boot App
+
 	@GetMapping("/")
-	public ModelAndView mv (Model model) {
-	    model.addAttribute("students", service.employeelistAll());
-	    ModelAndView mv = new ModelAndView("Index");
-	    return mv;
+	public ModelAndView mv(Model model) {
+		model.addAttribute("employees", service.employeelistAll());
+		ModelAndView mv = new ModelAndView("Index");
+		return mv;
 	}
 	
 	
-	
-	
-	 @RequestMapping("/employeedetails/{id}")
-	    public ModelAndView employee(@PathVariable("id") int id ,Model model ){
-	        
-           System.out.println("id=========="+id);
-           
-           Optional<employees> emp = service.findById(id);
-           
-           if (emp.isPresent()) 
-        	   
-        	   model.addAttribute("details", emp.get());
-   	           ModelAndView mv = new ModelAndView("Employee");
-        	   return  mv;
-                
-	    }
-	
-	
+	//Function Return Employee By ID
+
+	@RequestMapping("/employeedetails/{id}")
+	public ModelAndView employee(@PathVariable("id") int id, Model model) {
+
+		System.out.println("id==========" + id);
+
+		Optional<employees> emp = service.findById(id);
+
+		if (emp.isPresent())
+
+			model.addAttribute("details", emp.get());
+		ModelAndView mv = new ModelAndView("Employee");
+		return mv;
+
+	}
+
 }

@@ -18,9 +18,9 @@
 		<div class="container" >
 
 
-			<ul th:each="student: ${students}">
+			<ul th:each="emp: ${employees}">
 				
-				<a th:href="@{/employeedetails/{id}(id = ${student.id})}" th:text="${student.first_name} "></a> 
+				<a th:href="@{/employeedetails/{id}(id = ${emp.id})}" th:text="${emp.first_name} "></a> 
 			</ul>
 
 
